@@ -1,6 +1,6 @@
 # hero_notes.py
 
-# You can ignore this page!!!
+# *** You can ignore this page!!! ***
 
 # ********* This is just a page where I wrote all my notes within each code
 # to help me understand what I'm learning better.  *********
