@@ -22,7 +22,7 @@ class Ability:
         return random_value
     
 if __name__ == '__main__':
-    
+
     ability1 = Ability('Web Shooter', 10)
     ability2 = Ability('Thunderstruck', 20)
 
