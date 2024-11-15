@@ -10,6 +10,11 @@ class Dog:
     def bark(self):
         print('Woof!')
 
+    def RollOver(self):
+        print('Roll over!')
+
+    def Sit(self):
+        print('Sit!')
 
 # instsantiation call that creates a Dog object:
 # --> Dog('Rex') <--
