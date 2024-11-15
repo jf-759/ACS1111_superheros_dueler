@@ -24,16 +24,23 @@ class Hero:
     def fight(self, opponent):
         ''' Current Hero will take turns fighting the opponent hero passed '''
         # TODO: fight each hero until a victor emerges.
-        winner = random.choice([self, opponent])
+        # winner = random.choice([self, opponent])
 
-        if winner == self:
-            print(f'{self.name} wins the fight against {opponent.name}!')
-        else:
-            print(f'{opponent.name} wins the fight against {self.name}!')
+        # if winner == self:
+        #     print(f'{self.name} wins the fight against {opponent.name}!')
+        # else:
+        #     print(f'{opponent.name} wins the fight against {self.name}!')
 
         # Phases to implement:
         # 1. randomly choose winner,
         # hint: look into random library, more specifically the choice method
+
+        if self.current_health > opponent.current_health:
+            print(f'{self.name} wins the fight against {opponent.name}!')
+            
+        else:
+            self.current_health < opponent.current_health
+            print(f'{opponent.name} wins the fight against {self.name}!')
 
 
 # note: because we gave the hero a starting health of 200, it shows up as 200
