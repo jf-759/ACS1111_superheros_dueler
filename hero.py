@@ -37,6 +37,7 @@ class Hero:
         # we use the append method to add ability objects to our list.
         self.abilities.append(ability)
 
+    # attack method
     def attack(self):
         '''
         Calculate the total damage from all ability attacks.
@@ -52,6 +53,7 @@ class Hero:
         # return the total damage
         return total_damage
     
+    # armor added:
     def add_armor(self, armor):
         ''' 
         Add armor to self.armors
@@ -60,7 +62,6 @@ class Hero:
 
         self.armors.append(armor)
             
-
     # fight method:
     def fight(self, opponent):
         ''' Current Hero will take turns fighting the opponent hero passed '''
@@ -72,14 +73,32 @@ class Hero:
             self.starting_health < opponent.starting_health
             print(f'{opponent.name} wins the fight against {self.name}!')
 
+    # defend method
+    def defend(self):
+        ''' 
+        Calculate the total block amount form all armor blocks.
+        return: total_block:Int
+        '''
+        # start with total at 0
+        total_block = 0
+
+        # loop through all hero's abilities
+        for armor in self.armors:
+            total_block += armor.block()
+        
+        return total_block
+
 if __name__ == "__main__":
 
-    ability1 = Ability('Web Shooter', 50)
     hero1 = Hero("Spiderman", 400)
+    ability1 = Ability('Web Shooter', 50)
+    armor1 = Armor('Spidey Sense', 10)
     hero1.add_ability(ability1)
+    hero1.add_armor(armor1)
 
     hero2 = Hero("Thor", 450)
     ability2 = Ability('Thunderstruck', 90)
+    armor2 = Armor('Kratos\' Shield', 30)
     hero2.add_ability(ability2)
 
     # print(hero1.abilities)
@@ -87,6 +106,8 @@ if __name__ == "__main__":
 
     print(hero1.attack())
     print(hero2.attack())
+    print(hero1.defend())
+    print(hero2.defend())
 
 
     hero1.fight(hero2)
