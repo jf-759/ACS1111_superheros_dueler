@@ -87,6 +87,24 @@ class Hero:
             total_block += armor.block()
         
         return total_block
+    
+    def take_damage(self, damage):
+        '''
+        Updates self.current_health to reflect the damage minus the defense.
+        '''
+
+        damage_taken = damage - self.defend()
+
+        if damage_taken > 0:
+            self.current_health -= self.defend()
+            print(f'{self.name} took {damage_taken} damage!')
+        
+        else:
+            self.current_health -= damage_taken
+            print(f'{self.name} actually gained a little {damage_taken} health!')
+
+
+
 
 if __name__ == "__main__":
 
@@ -95,6 +113,7 @@ if __name__ == "__main__":
     armor1 = Armor('Spidey Sense', 10)
     hero1.add_ability(ability1)
     hero1.add_armor(armor1)
+    hero1.take_damage(50)
 
     hero2 = Hero("Thor", 450)
     ability2 = Ability('Thunderstruck', 90)
@@ -104,10 +123,20 @@ if __name__ == "__main__":
     # print(hero1.abilities)
     # print(hero2.abilities)
 
+    print(f'{hero1.name} attacks with {ability1.name}!')
     print(hero1.attack())
-    print(hero2.attack())
-    print(hero1.defend())
+
+    print(f'{hero2.name} blocks that attack with {armor2.name}!')
     print(hero2.defend())
+
+    print(f'{hero2.name} then attacks {hero1.name} with {ability2.name}!')
+    print(hero2.attack())
+
+    print(f'And {hero1.name} blocks it using {armor1.name}!')
+    print(hero1.defend())
+
+    print(f'Oh no! {hero1.name} health has gone down!')
+    print(hero1.current_health)
 
 
     hero1.fight(hero2)
