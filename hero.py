@@ -51,6 +51,14 @@ class Hero:
             total_damage += ability.attack()
         # return the total damage
         return total_damage
+    
+    def add_armor(self, armor):
+        ''' 
+        Add armor to self.armors
+        Armor: Armor Object
+        '''
+
+        self.armors.append(armor)
             
 
     # fight method:
