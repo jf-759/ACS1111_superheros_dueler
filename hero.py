@@ -37,6 +37,30 @@ class Hero:
         # we use the append method to add ability objects to our list.
         self.abilities.append(ability)
 
+    # armor added:
+    def add_armor(self, armor):
+        ''' 
+        Add armor to self.armors
+        Armor: Armor Object
+        '''
+
+        self.armors.append(armor)
+
+    # defend method
+    def defend(self):
+        ''' 
+        Calculate the total block amount form all armor blocks.
+        return: total_block:Int
+        '''
+        # start with total at 0
+        total_block = 0
+
+        # loop through all hero's abilities
+        for armor in self.armors:
+            total_block += armor.block()
+        
+        return total_block
+
     # attack method
     def attack(self):
         '''
@@ -53,14 +77,6 @@ class Hero:
         # return the total damage
         return total_damage
     
-    # armor added:
-    def add_armor(self, armor):
-        ''' 
-        Add armor to self.armors
-        Armor: Armor Object
-        '''
-
-        self.armors.append(armor)
             
     # fight method:
     def fight(self, opponent):
@@ -72,21 +88,6 @@ class Hero:
         else:
             self.starting_health < opponent.starting_health
             print(f'{opponent.name} wins the fight against {self.name}!')
-
-    # defend method
-    def defend(self):
-        ''' 
-        Calculate the total block amount form all armor blocks.
-        return: total_block:Int
-        '''
-        # start with total at 0
-        total_block = 0
-
-        # loop through all hero's abilities
-        for armor in self.armors:
-            total_block += armor.block()
-        
-        return total_block
     
     def take_damage(self, damage):
         '''
@@ -102,6 +103,22 @@ class Hero:
         else:
             self.current_health -= damage_taken
             print(f'{self.name} actually gained a little {damage_taken} health!')
+
+
+    def is_alive(self):
+        ''' 
+        Return True or False depending on whether the hero is alive or not.
+        '''
+
+        print(f'{self.name} has {self.current_health} health left.')
+
+        if self.current_health <= 0:
+            print(f'Oh no!! {self.name} has been KO\'ed!')
+            return False
+        
+        else:
+            return True
+
 
 
 
@@ -137,6 +154,13 @@ if __name__ == "__main__":
 
     print(f'Oh no! {hero1.name} health has gone down!')
     print(hero1.current_health)
+
+
+    # hero1.take_damage(150)
+    # print(hero1.is_alive())
+
+    hero1.take_damage(15000)
+    print(hero1.is_alive())
 
 
     hero1.fight(hero2)
