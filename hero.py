@@ -82,13 +82,27 @@ class Hero:
     def fight(self, opponent):
         ''' Current Hero will take turns fighting the opponent hero passed '''
 
-        if self.starting_health > opponent.starting_health:
-            print(f'{self.name} wins the fight against {opponent.name}!')
-            
-        else:
-            self.starting_health < opponent.starting_health
-            print(f'{opponent.name} wins the fight against {self.name}!')
-    
+        if not self.abilities and not opponent.abilities:
+            print('Draw! Neither hero has abilities to fight.')
+        
+            return
+
+        while self.is_alive() and opponent.is_alive():
+            print(f'{self.name} attacks {opponent.name} with {self.attack()} damage!')
+            opponent.take_damage(self.attack())
+
+            if not opponent.is_alive():
+                print(f'{self.name} wins!')
+                break
+
+            print(f'{opponent.name} attacks {self.name} with {opponent.attack()} damage!')
+            self.take_damage(opponent.attack())
+
+            if not self.is_alive():
+                print(f'{opponent.name} wins!')
+                break
+
+
     def take_damage(self, damage):
         '''
         Updates self.current_health to reflect the damage minus the defense.
@@ -130,37 +144,34 @@ if __name__ == "__main__":
     armor1 = Armor('Spidey Sense', 10)
     hero1.add_ability(ability1)
     hero1.add_armor(armor1)
-    hero1.take_damage(50)
 
     hero2 = Hero("Thor", 450)
     ability2 = Ability('Thunderstruck', 90)
     armor2 = Armor('Kratos\' Shield', 30)
     hero2.add_ability(ability2)
 
-    # print(hero1.abilities)
-    # print(hero2.abilities)
 
-    print(f'{hero1.name} attacks with {ability1.name}!')
-    print(hero1.attack())
+    # print(f'{hero1.name} attacks with {ability1.name}!')
+    # print(hero1.attack())
 
-    print(f'{hero2.name} blocks that attack with {armor2.name}!')
-    print(hero2.defend())
+    # print(f'{hero2.name} blocks that attack with {armor2.name}!')
+    # print(hero2.defend())
 
-    print(f'{hero2.name} then attacks {hero1.name} with {ability2.name}!')
-    print(hero2.attack())
+    # print(f'{hero2.name} then attacks {hero1.name} with {ability2.name}!')
+    # print(hero2.attack())
 
-    print(f'And {hero1.name} blocks it using {armor1.name}!')
-    print(hero1.defend())
+    # print(f'And {hero1.name} blocks it using {armor1.name}!')
+    # print(hero1.defend())
 
-    print(f'Oh no! {hero1.name} health has gone down!')
-    print(hero1.current_health)
+    # print(f'Oh no! {hero1.name} health has gone down!')
+    # print(hero1.current_health)
 
 
     # hero1.take_damage(150)
     # print(hero1.is_alive())
 
-    hero1.take_damage(15000)
-    print(hero1.is_alive())
+    # hero1.take_damage(15000)
+    # print(hero1.is_alive())
 
 
     hero1.fight(hero2)
