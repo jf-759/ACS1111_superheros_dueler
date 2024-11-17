@@ -110,6 +110,8 @@ class Hero:
 
             if not opponent.is_alive():
                 print(f'{self.name} wins!')
+                self.add_kill(1)
+                opponent.add_deaths(1)
                 break
 
             print(f'{opponent.name} attacks {self.name} for {opponent_damage} damage!')
@@ -117,6 +119,8 @@ class Hero:
 
             if not self.is_alive():
                 print(f'{opponent.name} wins!')
+                opponent.add_kill(1)
+                self.add_deaths(1)
                 break
 
             if self.is_alive() and opponent.is_alive():

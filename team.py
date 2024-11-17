@@ -51,5 +51,14 @@ class Team:
 
         self.heroes.append(hero)
 
+    def stats(self):
+        '''
+        Print team statistics.
+        '''
+
+        for hero in self.heroes:
+            kd = hero.kills / hero.deaths
+            print(f'{hero.name} Kill/Deaths: {kd}')
+
     
 
