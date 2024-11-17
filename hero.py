@@ -1,6 +1,7 @@
 # hero.py
 from ability import Ability
 from armor import Armor
+from weapon import Weapon
 import random
 
 class Hero:
@@ -20,6 +21,7 @@ class Hero:
         # and are set to empty lists on initialization
         self.abilities = list()
         self.armors = list()
+        self.weapons = list()
 
         # assign hero and starting health here:
         self.name = name
@@ -36,6 +38,13 @@ class Hero:
 
         # we use the append method to add ability objects to our list.
         self.abilities.append(ability)
+
+    def add_weapon(self, weapon):
+        '''
+        Add weapon to self.abilities
+        '''
+
+        self.weapons.append(weapon)
 
     # armor added:
     def add_armor(self, armor):
@@ -160,8 +169,11 @@ if __name__ == "__main__":
     hero2 = Hero("Thor", 450)
     ability2 = Ability('Thunderstruck', 70)
     armor2 = Armor('Kratos\' Shield', 30)
+    weapon2 = Weapon('Mjolnir', 50)
     hero2.add_ability(ability2)
+    hero2.add_weapon(weapon2)
 
+    # print(hero2.attack())
 
     # print(f'{hero1.name} attacks with {ability1.name}!')
     # print(hero1.attack())
