@@ -87,19 +87,31 @@ class Hero:
         
             return
 
-        while self.is_alive() and opponent.is_alive():
-            print(f'{self.name} attacks {opponent.name} with {self.attack()} damage!')
-            opponent.take_damage(self.attack())
+        # while self.is_alive() and opponent.is_alive():
+        while True:
+
+            self_damage = self.attack()
+            opponent_damage = opponent.attack()
+
+            print(f'{self.name} attacks {opponent.name} for {self_damage} damage!')
+            opponent.take_damage(self_damage)
 
             if not opponent.is_alive():
                 print(f'{self.name} wins!')
                 break
 
-            print(f'{opponent.name} attacks {self.name} with {opponent.attack()} damage!')
-            self.take_damage(opponent.attack())
+            print(f'{opponent.name} attacks {self.name} for {opponent_damage} damage!')
+            self.take_damage(opponent_damage)
 
             if not self.is_alive():
                 print(f'{opponent.name} wins!')
+                break
+
+            if self.is_alive() and opponent.is_alive():
+                print('Both heroes are still standing... The battle continues!!! \n')
+
+            if not self.is_alive() and not opponent.is_alive():
+                print('It\'s a draw! Both heroes are defeated!')
                 break
 
 
@@ -111,11 +123,11 @@ class Hero:
         damage_taken = damage - self.defend()
 
         if damage_taken > 0:
-            self.current_health -= self.defend()
+            self.current_health -= damage_taken
             print(f'{self.name} took {damage_taken} damage!')
         
         else:
-            self.current_health -= damage_taken
+            # self.current_health -= damage_taken
             print(f'{self.name} actually gained a little {damage_taken} health!')
 
 
@@ -141,12 +153,12 @@ if __name__ == "__main__":
 
     hero1 = Hero("Spiderman", 400)
     ability1 = Ability('Web Shooter', 50)
-    armor1 = Armor('Spidey Sense', 10)
+    armor1 = Armor('Spidey Sense', 20)
     hero1.add_ability(ability1)
     hero1.add_armor(armor1)
 
     hero2 = Hero("Thor", 450)
-    ability2 = Ability('Thunderstruck', 90)
+    ability2 = Ability('Thunderstruck', 70)
     armor2 = Armor('Kratos\' Shield', 30)
     hero2.add_ability(ability2)
 
