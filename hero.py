@@ -31,6 +31,9 @@ class Hero:
         # because no damage has been taken yet.
         self.current_health = starting_health
 
+        self.deaths = 0
+        self.kills = 0
+
     def add_ability(self, ability):
         '''
         Add ability to abilities list.
@@ -155,7 +158,19 @@ class Hero:
             return True
 
 
+    def add_kill(self, num_kills):
+        '''
+        Update self.kills by num_kills amount.
+        '''
 
+        self.kills += num_kills
+
+    def add_deaths(self, num_deaths):
+        '''
+        Update deaths with num_deaths.
+        '''
+
+        self.deaths += num_deaths
 
 
 if __name__ == "__main__":
