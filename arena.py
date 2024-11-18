@@ -26,5 +26,27 @@ class Arena:
 
         return Ability(name, max_damage)
     
+    def create_weapon(self):
+        '''
+        Prompt user for Weapon information
+        return Weapon with values from user input.
+        '''
+
+        name = input(' What was the weapon name? ')
+        max_damage = input( ' What is the max damage of the weapon? ')
+
+        return Weapon(name, max_damage)
+    
+    def create_armor(self):
+        '''
+        Prompt user for Armor information
+        return Armor with values from user input.
+        '''
+
+        name = input('What was teh armor name? ')
+        max_damage = input(' What is the max damage of the armor? ')
+
+        return Armor(name, max_damage)
+    
     
         
