@@ -67,4 +67,29 @@ class Arena:
                 hero.add_armor(self.create_armor())
         return hero
         
+    def build_team_one(self):
+        '''
+        Prompt the user to build team_one
+        '''
+        
+        # this method should allow a user to create team one.
+        # Prompt the user for the number of Heroes on team one.
+        # Call self.create_hero() for every hero that the user wants to add to team one.
+        # Add the created hero to team one.
+
+        numOfTeamMembers = int(input('How many members would you like on Team One?\n'))
+        for i in range(numOfTeamMembers):
+            hero = self.create_hero()
+            self.team_one.add_hero(hero)
+
+    def build_team_two(self):
+        '''
+        Prompt the user to build team_two
+        '''
+        numOfTeamMembers = int(input('How many members would you like on Team Two?\n'))
+        for i in range(numOfTeamMembers):
+            hero = self.create_hero()
+            self.team_two.add_hero(hero)
+
     
+        
