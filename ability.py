@@ -2,7 +2,7 @@
 import random
 
 class Ability:
-    def __init__(self, name, max_damage):
+    def __init__(self, name: str, max_damage: int):
         '''
         Initialize the values passed into this method as instance variables.
         '''

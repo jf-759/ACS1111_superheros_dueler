@@ -1,6 +1,7 @@
 # team.py
 import random
 
+
 class Team:
     def __init__(self, name):
         '''
@@ -56,10 +57,12 @@ class Team:
         '''
         Print team statistics.
         '''
-
+  
+        # An error kept showing up that said k/d could not divide by zero, 
+        # so k/d needed to be removed in order to work.
         for hero in self.heroes:
-            kd = hero.kills / hero.deaths
-            print(f'{hero.name} Kill/Deaths: {kd}')
+            # kd = hero.kills / hero.deaths
+            print(f'{hero.name} Kill/Deaths: {hero.kills}/ {hero.deaths}')
 
     def revive_heroes(self, health=100):
         '''
@@ -93,11 +96,11 @@ class Team:
 
             hero.fight(opponent)
 
-            if hero.current_health < 0:
+            if not hero.is_alive():
                 living_heroes.remove(hero)
                 print(f'{hero.name} has fallen!')
 
-            elif opponent.current_health < 0:
+            if not opponent.is_alive():
                 living_opponents.remove(opponent)
                 print(f'{opponent.name} has fallen!')
 

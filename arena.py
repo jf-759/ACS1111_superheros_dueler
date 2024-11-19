@@ -12,8 +12,8 @@ class Arena:
         team_two: None
         '''
 
-        self.team_one = []
-        self.team_two = []
+        self.team_one = None
+        self.team_two = None
 
     def create_ability(self):
         '''
@@ -22,7 +22,7 @@ class Arena:
         '''
 
         name = input('What was the ability name? ')
-        max_damage = input('What is the max damage of the ability? ')
+        max_damage = int(input('What is the max damage of the ability? '))
 
         return Ability(name, max_damage)
     
@@ -33,7 +33,7 @@ class Arena:
         '''
 
         name = input(' What was the weapon name? ')
-        max_damage = input( ' What is the max damage of the weapon? ')
+        max_damage = int(input( ' What is the max damage of the weapon? '))
 
         return Weapon(name, max_damage)
     
@@ -43,10 +43,10 @@ class Arena:
         return Armor with values from user input.
         '''
 
-        name = input('What was teh armor name? ')
-        max_damage = input(' What is the max damage of the armor? ')
+        name = input('What was the armor name? ')
+        max_block = int(input(' What is the max damage of the armor? '))
 
-        return Armor(name, max_damage)
+        return Armor(name, max_block)
     
     def create_hero(self):
         '''
@@ -77,8 +77,10 @@ class Arena:
         # Call self.create_hero() for every hero that the user wants to add to team one.
         # Add the created hero to team one.
 
-        numOfTeamMembers = int(input('How many members would you like on Team One?\n'))
-        for i in range(numOfTeamMembers):
+        self.team_one = Team(input('What is team one\'s name? '))
+
+        num_of_team_members = int(input('How many members would you like on Team One?\n'))
+        for i in range(num_of_team_members):
             hero = self.create_hero()
             self.team_one.add_hero(hero)
 
@@ -86,8 +88,10 @@ class Arena:
         '''
         Prompt the user to build team_two
         '''
-        numOfTeamMembers = int(input('How many members would you like on Team Two?\n'))
-        for i in range(numOfTeamMembers):
+        self.team_two = Team(input('What is team two\'s name? '))
+
+        num_of_team_members = int(input('How many members would you like on Team Two?\n'))
+        for i in range(num_of_team_members):
             hero = self.create_hero()
             self.team_two.add_hero(hero)
 
@@ -157,3 +161,24 @@ class Arena:
             if hero.deaths == 0:
                 print('survived from ' + self.team_two.name + ': ' + hero.name)
 
+if __name__ == '__main__':
+    game_is_running = True
+
+    arena = Arena()
+    
+    arena.build_team_one()
+    arena.build_team_two()
+    
+    while game_is_running:
+
+        arena.team_battle()
+        arena.show_stats()
+        play_again = input("Play Again? Y or N: ")
+
+        if play_again.lower() == 'n':
+            game_is_running = False
+
+        else:
+
+            arena.team_one.revive_heroes()
+            arena.team_two.revive_heroes()
